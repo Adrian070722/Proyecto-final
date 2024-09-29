@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .bg-img{
+    background: url("/background-admins.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+    </style>
+</head>
+<body class="bg-img">
+  <nav class="bg-green-800">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div class="relative flex h-16 items-center justify-between">
+        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+
+          <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+            <span class="absolute -inset-0.5"></span>
+            <span class="sr-only">Open main menu</span>
+            <!--
+              Icon when menu is closed.
+  
+              Menu open: "hidden", Menu closed: "block"
+            -->
+            <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <!--
+              Icon when menu is open.
+  
+              Menu open: "block", Menu closed: "hidden"
+            -->
+            <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+          <div class="flex flex-shrink-0 items-center">
+          
+          </div>
+          <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+            <div class="flex flex-shrink-0 items-center">
+              <img class="h-10 w-auto" src="/logo-navbar.png" alt="Your Company">
+            </div>
+          <div class="hidden sm:ml-6 sm:block">
+            <div class="flex space-x-4">
+              <a href="/bienvenido/inicio" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Inicio</a>
+              <a href="/empresas/inicio#nosotros" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Nosotros</a>
+              <a href="/empresas/inicio#servicios" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Servicios</a>
+              <a href="/empresas/inicio#footer" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contacto</a>
+              <a href="/empresas/blog" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">blog</a>
+              <a href="/empresas/faqs" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">faqs</a>
+            </div>
+          </div>
+        </div>
+        
+            
+  
+    
+    <div class="sm:hidden" id="mobile-menu">
+      <div class="space-y-1 px-2 pb-3 pt-2">
+        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+        <a href="#" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</a>
+        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
+        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
+        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
+      </div>
+    </div>
+  </nav>
+      <h1 class="text-center mt-8 text-6xl mb-4 text-white font-bold drop-shadow-md">Blog</h1>
+   
+        <div id="blog-list" class="w-[98vw] h-[100vh] flex flex-wrap"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', ()=>{
+   
+    
+      const cardContainer = document.getElementById('blog-list');  
+      function createCard(data) {
+        const card = document.createElement('div');
+        card.className = 'overflow-y-auto w-[50%] mx-auto';
+        card.innerHTML = `
+              <div class="p-4 items-center justify-center flex sm:items-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                  <div class="bg-gray-100 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                      
+                      <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                      <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">${data.title}</h3>
+                        <div class="mt-2">
+                          <p class="text-sm text-gray-500">${data.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+        ` ;
+        return card;
+
+    }  
+     async function fetchAndDisplayCards() {
+        try {
+            const response = await fetch('/api/get/article');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            cardContainer.innerHTML = "";
+            data.forEach(item => {
+                const card = createCard(item);
+                cardContainer.appendChild(card);
+                
+            });
+        } catch (error) {
+            console.error('Fetch error:', error);
+        }
+    }
+      fetchAndDisplayCards();
+      
+    
+});
+        </script>
+</body>
+</html>
