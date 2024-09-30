@@ -2,7 +2,7 @@ const http = require("http");
 const path = require( "path");
 const fs = require("fs");
 const host = 'localhost';
-const port = 8000;
+const PORT = process.env.PORT || 3000;
 const { connectDB } = require("./DB/db");
 const { createArticle, getArticle, updateArticle, deleteArticle} = require("./Models/articulos");
 const { createComentarios, updateComentarios, getComentarios } = require("./Models/comentarios");
@@ -734,8 +734,8 @@ const stream = fs.createReadStream(filePath, { start, end })
 
 const server = http.createServer(requestListener);
 connectDB().then(()=>{
-    server.listen(port, host, ()=>{
-        console.log("mi servidor esta funcionando en http://"+host+":"+port + "/bienvenido/inicio")
+    server.listen(PORT,  ()=>{
+        console.log("mi servidor esta funcionando en http://localhost:"+PORT + "/bienvenido/inicio")
     })
 
 });
